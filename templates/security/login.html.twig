@@ -1,8 +1,21 @@
-{% extends 'base.html.twig' %}
+<head>
+    <meta charset="UTF-8">
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <link href="{{ asset('css/main.css') }}" rel="stylesheet"/>
+    {% endblock %}
 
-{% block body %}
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</head>
+<body class="bg-gray-900">
 <div class="flex flex-col my-20 items-center">
-    <h1 class="text-4xl font-bold text-black mb-10">Connexion</h1>
+    <h1 class="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl mb-10">Connexion</h1>
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
@@ -14,22 +27,22 @@
     {% endif %}
     <form action="" method="POST" class="w-4/5 sm:w-3/6 lg:w-2/6">
         <div class="md:items-center mb-10">
-            <label class="block text-gray-700 text-xl font-bold mb-2" for="email">Adresse Email</label>
+            <label class="block text-white text-xl font-bold mb-2" for="email">Adresse Email</label>
             <input class="input shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-white" type="email" value="{{ last_username }}" name="email" placeholder="Adresse Email" required>
         </div>
         <div class="md:items-center mb-10">
-            <label class="block text-gray-700 text-xl font-bold mb-2" for="password">Mot de passe</label>
+            <label class="block text-white text-xl font-bold mb-2" for="password">Mot de passe</label>
             <input class="input shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-white" type="password" name="password" id="inputPassword" placeholder="Mot de passe" minlength="8" required>
         </div>
         <input type="hidden" name="_csrf_token"
                value="{{ csrf_token('authenticate') }}"
         >
         <div class="text-center">
-            <button class="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out btn" type="submit">
+            <button class="inline-block w-full rounded border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-white focus:outline-none focus:ring active:text-opacity-75 sm:w-auto" type="submit">
                 Se connecter
             </button>
         </div>
     </form>
     <a href="{{ path('app_register') }}" class="text-center text-blue-500 hover:text-blue-600 underline my-10">Vous n’avez pas encore de compte ? <br> Cliquez ici pour vous inscrire !</a>
 </div>
-{% endblock %}
+</body>

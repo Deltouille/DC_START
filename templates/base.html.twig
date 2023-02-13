@@ -15,8 +15,14 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
-    <body class="">
-        {% block body %}
-        {% endblock %}
+    <body class="flex bg-gray-900">
+        {% if app.user %}
+            {% include 'navigation.html.twig' %}
+        {% endif %}
+        <div class="lg:w-1/6"></div>
+        <div class="w-5/6 flex justify-center">
+            {% block body %}
+            {% endblock %}
+        </div>
     </body>
 </html>

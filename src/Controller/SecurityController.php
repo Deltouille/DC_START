@@ -20,6 +20,11 @@ class SecurityController extends AbstractController
         $this->doctrine = $doctrine;
     }
 
+    #[Route(path: '/', name: 'app_home')]
+    public function index(){
+        return $this->render('security/index.html.twig');
+    }
+
     #[Route(path: '/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
